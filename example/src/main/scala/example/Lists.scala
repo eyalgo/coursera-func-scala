@@ -43,18 +43,17 @@ object Lists {
    * @throws java.util.NoSuchElementException if `xs` is an empty list
    */
   def max(xs: List[Int]): Int = {
+    def checkMax(xs: List[Int]): Int = {
+      if (xs.isEmpty) Int.MinValue
+      else compareInts(xs.head, checkMax(xs.tail))
+    }
+
+    def compareInts(firstInt: Int, secondInt: Int): Int = {
+      if (firstInt > secondInt) firstInt else secondInt
+    }
+
     if (xs.isEmpty) throw new NoSuchElementException()
     else checkMax(xs)
   }
 
-  private def checkMax(xs: List[Int]): Int = {
-    if (xs.isEmpty) return Int.MinValue
-    val head = xs.head;
-    val maxTail = checkMax(xs.tail)
-    return compareInts(head, maxTail)
-  }
-  
-  private def compareInts(firstInt: Int, secondInt: Int): Int = {
-	  if (firstInt > secondInt) firstInt else secondInt
-  }
 }
