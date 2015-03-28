@@ -1,6 +1,7 @@
 package example
 
 import common._
+import java.util.NoSuchElementException
 
 object Lists {
   /**
@@ -41,5 +42,19 @@ object Lists {
    * @return The largest element in `xs`
    * @throws java.util.NoSuchElementException if `xs` is an empty list
    */
-  def max(xs: List[Int]): Int = ???
+  def max(xs: List[Int]): Int = {
+    if (xs.isEmpty) throw new NoSuchElementException()
+    else checkMax(xs)
+  }
+
+  private def checkMax(xs: List[Int]): Int = {
+    if (xs.isEmpty) return Int.MinValue
+    val head = xs.head;
+    val maxTail = checkMax(xs.tail)
+    return compareInts(head, maxTail)
+  }
+  
+  private def compareInts(firstInt: Int, secondInt: Int): Int = {
+	  if (firstInt > secondInt) firstInt else secondInt
+  }
 }
