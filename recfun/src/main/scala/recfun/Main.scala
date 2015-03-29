@@ -14,7 +14,11 @@ object Main {
   /**
    * Exercise 1
    */
-  def pascal(c: Int, r: Int): Int = ???
+  def pascal(c: Int, r: Int): Int = {
+    String.format("", "","")
+    if (c > r) throw new ArrayIndexOutOfBoundsException(String.format( "Column: %s Row: %s", c, r));
+    else 0
+  }
 
   /**
    * Exercise 2
