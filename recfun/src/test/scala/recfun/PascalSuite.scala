@@ -20,11 +20,15 @@ class PascalSuite extends FunSuite {
     assert(pascal(1, 3) === 3)
   }
 
+  test("pascal: col=2,row=4") {
+    assert(pascal(2, 4) === 6)
+  }
+
   test("pascal: col=3,row=3") {
     assert(pascal(3, 3) === 1)
   }
 
-  test("pascal: col=3,row=2") {
+  test("pascal: col=3,row=2 should get ecxeption") {
     intercept[ArrayIndexOutOfBoundsException] {
     	pascal(3, 2)
     }

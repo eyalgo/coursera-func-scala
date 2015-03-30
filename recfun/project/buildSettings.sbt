@@ -1,4 +1,11 @@
-resolvers += "Spray Repository" at "http://repo.spray.io"
+// resolvers += "Spray Repository" at "http://repo.spray.io"
+
+resolvers ++= Seq(
+  "Spray Repository" at "http://repo.spray.io",
+  "Maven Repo" at "http://mvnrepository.com/"
+)
+
+resolvers += Resolver.sonatypeRepo("releases")
 
 libraryDependencies += "net.databinder" %% "dispatch-http" % "0.8.10"
 
