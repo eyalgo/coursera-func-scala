@@ -184,6 +184,7 @@ class FunSetSuite extends FunSuite {
     new TestSets {
       val s = map(s1, x => x +1)
       assert(contains(s, 2), "1 was mapped to 1+1")
+      assert(!contains(s, 3), "1 was not mapped to 3")
       
       val sm = map(s, x => x*x)
       assert(contains(sm, 4), "2 was mapped to 2*2")
