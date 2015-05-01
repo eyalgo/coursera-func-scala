@@ -26,6 +26,14 @@ class TweetSetSuite extends FunSuite {
 
   def size(set: TweetSet): Int = asSet(set).size
 
+  test("mostRetweeted: on empty set") {
+    new TestSets {
+      intercept[NoSuchElementException] {
+        set1.mostRetweeted
+      }
+    }
+  }
+
   test("filter: on empty set") {
     new TestSets {
       assert(size(set1.filter(tw => tw.user == "a")) === 0)
@@ -43,10 +51,16 @@ class TweetSetSuite extends FunSuite {
       assert(size(set5.filter(tw => tw.retweets == 20)) === 2)
     }
   }
-
+//TODO add tests for filter
+  
   test("union: set4c and set4d") {
     new TestSets {
-      assert(size(set4c.union(set4d)) === 4)
+      def uniounSet = set4c.union(set4d)
+      assert(size(uniounSet) === 4)
+      assert(uniounSet contains new Tweet("c", "c body", 7))
+      assert(uniounSet contains new Tweet("d", "d body", 9))
+      assert(uniounSet contains new Tweet("a", "a body", 20))
+      assert(uniounSet contains new Tweet("b", "b body", 20))
     }
   }
 
