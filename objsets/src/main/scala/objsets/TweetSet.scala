@@ -251,7 +251,7 @@ object GoogleVsApple {
   val google = List("android", "Android", "galaxy", "Galaxy", "nexus", "Nexus")
   val apple = List("ios", "iOS", "iphone", "iPhone", "ipad", "iPad")
   
-  def tweetsWithKeywords(keywords: List[String]): Tweet => Boolean = (tweet => google.exists(keyword => tweet.text.contains(keyword)))
+  def tweetsWithKeywords(keywords: List[String]): Tweet => Boolean = (tweet => keywords.exists(keyword => tweet.text.contains(keyword)))
 
   lazy val googleTweets: TweetSet = TweetReader.allTweets.filter(tweetsWithKeywords(google))
   lazy val appleTweets: TweetSet = TweetReader.allTweets.filter(tweetsWithKeywords(apple))
