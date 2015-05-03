@@ -16,6 +16,7 @@ class TweetSetSuite extends FunSuite {
     val set4c = set3.incl(c)
     val set4d = set3.incl(d)
     val set5 = set4c.incl(d)
+    val set6 = set5.incl(new Tweet("max", "max body", 21))
   }
 
   def asSet(tweets: TweetSet): Set[Tweet] = {
@@ -40,6 +41,12 @@ class TweetSetSuite extends FunSuite {
     }
   }
 
+  test("empty: on empty set") {
+    new TestSets {
+      assert(set1.empty)
+    }
+  }
+
   test("filter: a on set5") {
     new TestSets {
       assert(size(set5.filter(tw => tw.user == "a")) === 1)
@@ -51,8 +58,8 @@ class TweetSetSuite extends FunSuite {
       assert(size(set5.filter(tw => tw.retweets == 20)) === 2)
     }
   }
-//TODO add tests for filter
-  
+  //TODO add tests for filter
+
   test("union: set4c and set4d") {
     new TestSets {
       def uniounSet = set4c.union(set4d)
@@ -73,6 +80,21 @@ class TweetSetSuite extends FunSuite {
   test("union: with empty set (2)") {
     new TestSets {
       assert(size(set1.union(set5)) === 4)
+    }
+  }
+
+  test("mostRetweeted: on set6") {
+    new TestSets {
+      def maxRetweetTweet = set6.mostRetweeted
+      assert(maxRetweetTweet.text equals "max body")
+      assert(maxRetweetTweet.retweets equals 21)
+      assert(maxRetweetTweet.user equals "max")
+    }
+  }
+
+  test("empty: on empty set6") {
+    new TestSets {
+      assert(!set6.empty)
     }
   }
 
