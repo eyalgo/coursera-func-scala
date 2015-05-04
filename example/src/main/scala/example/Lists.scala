@@ -25,8 +25,8 @@ object Lists {
    * @return The sum of all elements in `xs`
    */
   def sum(xs: List[Int]): Int = {
-    if (xs.isEmpty) return 0;
-    return xs.head + sum(xs.tail)
+    if (xs.isEmpty) 0
+    else xs.head + sum(xs.tail)
   }
 
   /**
